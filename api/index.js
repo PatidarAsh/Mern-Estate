@@ -1,7 +1,10 @@
 import express, { application } from 'express';
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+dotenv.config();
 import userRouter from './routes/user.route.js'
 import authRouter from './routes/auth.route.js'
+
 
 mongoose.connect("mongodb://localhost:27017/Mern-Estate").then (() =>{
     console.log("conncted to database");
