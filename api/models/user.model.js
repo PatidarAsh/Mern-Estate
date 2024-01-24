@@ -14,7 +14,11 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         require: true,
-    }
+    },
+    avatar: {
+        type: String,
+        default: "https://imgs.search.brave.com/iFhMeSmoMs-8hXEoKOzpFoTCNJTjK1jvgmqYSvYhPj8/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pY29u/LWxpYnJhcnkuY29t/L2ltYWdlcy9wcm9m/aWxlLWltYWdlLWlj/b24vcHJvZmlsZS1p/bWFnZS1pY29uLTI4/LmpwZw"
+    },
 
 }, {timestamps: true}
 )
