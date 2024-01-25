@@ -148,13 +148,13 @@ function Profile() {
           defaultValue={currentUser.username}
           onChange={handleChange}
           id='username' 
-          className='border p-3 rounded-lg'/>
+          className='border p-3 rounded-lg '/>
         <input type="email"  
           placeholder='email'
           onChange={handleChange}
           defaultValue={currentUser.email}
            id='email' 
-          className='border p-3 rounded-lg'/>
+          className='border p-3 rounded-lg '/>
         <input type="password"  
           placeholder='password'
           onChange={handleChange} 
