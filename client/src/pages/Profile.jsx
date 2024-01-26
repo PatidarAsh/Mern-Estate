@@ -16,11 +16,11 @@ import {useDispatch} from 'react-redux'
 
 
 function Profile() {
-  const {currentUser, loading , error} = useSelector(state => state.user);
-  const fileRef = useRef(null)
-  const [file, setFile] = useState(undefined)
-  const [filePerc, setFilePerc] = useState(0)
-  const [fileUploadError, setFileUploadError] = useState(false)
+  const fileRef = useRef(null);
+  const { currentUser, loading, error } = useSelector((state) => state.user);
+  const [file, setFile] = useState(undefined);
+  const [filePerc, setFilePerc] = useState(0);
+  const [fileUploadError, setFileUploadError] = useState(false);
   const [formData, setFormData] = useState({});
   const [updateSuccess, setUpdateSuccess] = useState(false);
   const [showListingsError, setShowListingsError] = useState(false);
@@ -134,6 +134,24 @@ function Profile() {
     }
   }
 
+  const handleListingDelete = async (listingId) => {
+    try {
+      const res = await fetch(`/api/listing/delete/${listingId}`, {
+        method: 'DELETE',
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        console.log(data.message);
+        return;
+      }
+
+      setUserListings((prev) =>
+        prev.filter((listing) => listing._id !== listingId)
+      );
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
 
 
