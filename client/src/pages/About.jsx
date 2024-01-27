@@ -20,42 +20,23 @@ export default function About() {
         }}
       >
         <h3 className="text-white text-center">
-          Our mission is to find every family the space they need to relax, reconnect, and enjoy precious time away together.
+        Our mission is to help our clients achieve their real estate goals by providing expert advice, personalized service, and a deep understanding of the local market. Whether you are looking to buy, sell, or rent a property, we are here to help you every step of the way.
         </h3>
       </div>
-    </section> <br/>
-    <div className='flex flex-row  p-5 text-center   '>
-      <div className='p-3'>
-        <h2 className='text-2xl font-medium'>We believe in family connection</h2>
-      </div>
-      <div className="p-3">
-        <p className='text-2xl font-medium'>
-              We need each other now more than ever, and we all want more quality time with the people we love. Our focus is on the importance of connection and the joy that celebrating meaningful moments together brings. That’s the magic we’re trying to capture. That’s why we’re here.
+    </section> 
+    <div className='flex flex-row gap-6  text-center py-20 px-3 max-w-6xl mx-auto  '>
+        <h2 className='text-2xl font-medium  text-slate-700'>We believe in family connection</h2>
+        <p className="text-2xl font-medium  text-slate-700">
+            We need each other now more than ever, and we all want more quality time with the people we love. Our focus is on the importance of connection and the joy that celebrating meaningful moments together brings. That’s the magic we’re trying to capture. That’s why we’re here.
         </p>
-        <hr />
-      </div>
     </div>
+    <div className="flex flex-row gap-6  text-center  max-w-6xl mx-auto">
+        <h2 className='text-2xl font-medium text-slate-700'>We want families to live better together</h2>
+        <p className='text-2xl font-medium  text-slate-700'>That means new features that make getting away together simpler for everyone. It means filtering for preferences and highlighting destinations within driving distance. It means streamlined group planning tools. It means stays for every budget. And it means excellent customer service and flexible cancellation policies if plans change.</p>
+    </div>
+    
   </div>
-    // <div className="div">
-    //   <div className="text-center">
-    //     <img className='h-[500px] w-full' src={Image} alt="About" />
-    //   </div>
-    //   <div className="container mx-auto p-8">
-    //   <h1 className="text-4xl font-bold mb-4">About Us</h1>
-    //   <p className="text-lg mb-4">
-    //     Welcome to our Real Estate platform! We are dedicated to helping you find your dream home.
-    //     Our team of experienced professionals is here to guide you through the buying or selling process.
-    //   </p>
-    //   <p className="text-lg mb-4">
-    //     Whether you are looking for a cozy apartment, a spacious house, or a modern condominium,
-    //     we have a diverse range of properties to suit your needs.
-    //   </p>
-    //   <p className="text-lg mb-4">
-    //     At [Your Company Name], we prioritize customer satisfaction and strive to provide a seamless
-    //     and enjoyable real estate experience for every client.
-    //   </p>
-    // </div>
-    // </div>
+    
     
   )
 }
