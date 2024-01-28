@@ -9,7 +9,7 @@ import cookieParser from 'cookie-parser';
 import path from 'path'
 
 
-mongoose.connect("mongodb://localhost:27017/Mern-Estate").then (() =>{
+mongoose.connect(process.env.MONGO).then (() =>{
     console.log("conncted to database");
     }).catch((err) =>{
     console.error(err);
