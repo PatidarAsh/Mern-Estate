@@ -9,8 +9,8 @@ import { app } from '../firebase';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
-export default function UpdateListing() {
-  const { currentUser } = useSelector((state) => state.user);
+export default function updateListing() {
+    const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const params = useParams();
   const [files, setFiles] = useState([]);
@@ -22,7 +22,7 @@ export default function UpdateListing() {
     type: 'rent',
     bedrooms: 1,
     bathrooms: 1,
-    regularPrice: 0,
+    regularPrice: 50,
     discountPrice: 0,
     offer: false,
     parking: false,
@@ -169,8 +169,9 @@ export default function UpdateListing() {
       setLoading(false);
     }
   };
+
   return (
-    <main className='p-3 max-w-4xl mx-auto'>
+     <main className='p-3 max-w-4xl mx-auto'>
       <h1 className='text-3xl font-semibold text-center my-7'>
         Update a Listing
       </h1>
@@ -382,5 +383,5 @@ export default function UpdateListing() {
         </div>
       </form>
     </main>
-  );
+  )
 }
