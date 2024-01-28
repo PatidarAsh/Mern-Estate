@@ -50,13 +50,13 @@ export default function Home() {
   return (
     <div>
       {/* top */}
-    <div className="hero-image">
-      <div className="hero-text">
+    <div className="hero-image ">
+      <div className="hero-text gap-4">
         <h1 className='text-slate-700 font-bold text-3xl lg:text-6xl'>Find your next <span className='text-slate-500'>perfect</span><br/>place with ease</h1>
         {/* <p className='text-white text-bold text-2xl sm:text-2xl'>Find your perfect place.</p> */}
         <Link
           to={'/search'}
-          className='text--3xl sm:text-3xl text-white font-bold hover:underline'
+          className='text--3xl sm:text-3xl gap-4 text-white font-bold hover:underline'
         >
           Let's get started...
         </Link>
