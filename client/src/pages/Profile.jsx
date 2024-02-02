@@ -21,11 +21,24 @@ function Profile() {
   const [file, setFile] = useState(undefined);
   const [filePerc, setFilePerc] = useState(0);
   const [fileUploadError, setFileUploadError] = useState(false);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    username: currentUser.username,
+    email: currentUser.email,
+    password: "",
+  });
+  const [formErrors, setFormErrors] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
   const [updateSuccess, setUpdateSuccess] = useState(false);
   const [showListingsError, setShowListingsError] = useState(false);
   const [userListings, setUserListings] = useState([]);
   const dispatch = useDispatch();
+
+  const usernamePattern = /^[a-zA-Z0-9_]{3,20}$/;
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
   
 
 
@@ -60,11 +73,36 @@ function Profile() {
   };
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value });
+    // setFormData({ ...formData, [e.target.id]: e.target.value });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+
+    if (name === "username" && !usernamePattern.test(value)) {
+      setFormErrors((prevErrors) => ({ ...prevErrors, username: "Username must be 3-20 characters long and contain only letters, numbers, and underscores." }));
+    } else {
+      setFormErrors((prevErrors) => ({ ...prevErrors, username: "" }));
+    }
+
+    if (name === "email" && !emailPattern.test(value)) {
+        setFormErrors((prevErrors) => ({ ...prevErrors, email: "Please enter a valid email address." }));
+    } else {
+      setFormErrors((prevErrors) => ({ ...prevErrors, email: "" }));
+    }
+
+    if (name === "password" && !passwordPattern.test(value)) {
+        setFormErrors((prevErrors) => ({ ...prevErrors, password: "Password must be at least 8 characters long, contain at least one lowercase letter, one uppercase letter, and one number." }));
+    } else {
+      setFormErrors((prevErrors) => ({ ...prevErrors, password: "" }));
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setFormErrors({
+      username: "",
+      email: "",
+      password: "",
+    });
     try {
       dispatch(updateUserStart());
       const res = await fetch(`/api/user/update/${currentUser._id}`, {
@@ -159,7 +197,9 @@ function Profile() {
     <div className='p-3 max-w-lg mx-auto' >
       <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>
       <form  className='flex flex-col gap-4' onSubmit={handleSubmit} >
-        <input onChange={(e)=>setFile(e.target.files[0])} 
+        {/* <input onChange={(e)=>setFile(e.target.files[0])}  */}
+        <input 
+          onChange={handleChange}
           type="file" 
           ref={fileRef} 
           hidden accept='image/.*' />
@@ -181,21 +221,30 @@ function Profile() {
         </p>
         <input type="text"  
           placeholder='username' 
-          defaultValue={currentUser.username}
+          // defaultValue={currentUser.username}
+          name="username"
+          value={formData.username}
           onChange={handleChange}
           id='username' 
           className='border p-3 rounded-lg '/>
+          <p className='text-sm text-red-600'>{formErrors.username}</p>
         <input type="email"  
           placeholder='email'
           onChange={handleChange}
-          defaultValue={currentUser.email}
+          // defaultValue={currentUser.email}
+          name="email"
+          value={formData.email}
            id='email' 
           className='border p-3 rounded-lg '/>
+          <p className='text-sm text-red-600'>{formErrors.email}</p>
         <input type="password"  
           placeholder='password'
+          name="password"
+          value={formData.password}
           onChange={handleChange} 
           id='password' 
           className='border p-3 rounded-lg'/>
+          <p className='text-sm text-red-600'>{formErrors.password}</p>
         <button disabled={loading}
         className='bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-90 disabled:opacity-75' >
           {loading? 'loading' : 'Update'} 
